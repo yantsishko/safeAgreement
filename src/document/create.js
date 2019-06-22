@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Quill from 'quill';
 import { createPdf } from "../helpers/pdfCreator";
 
+import { saveAgreement } from './../helpers/agreements';
+
 export default class CreateDocument extends Component {
   quill = null;
   state = {
@@ -26,14 +28,20 @@ export default class CreateDocument extends Component {
     this.setState({ participantName: e.target.value })
   }
 
-  handleSubmit = () => {
+  handleSubmit = async () => {
     const container = document.getElementById('editor')
     const customHtml = container.querySelector('.ql-editor').innerHTML
 
+    console.log({ participantName: this.state.participantName, customHtml });
 
-    console.log({ participantName: this.state.participantName, customHtml })
+    await saveAgreement(+localStorage.getItem('user'), {
+      customHtml: customHtml,
+      pathToPdf: '',
+      participantName: this.state.participantName,
+    });
+
     createPdf(customHtml)
-  }
+  };
 
   render () {
     return (
