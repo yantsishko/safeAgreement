@@ -31,7 +31,7 @@ class App extends Component {
           </ul>
           <Route path="/" exact component={DocumentsList} />
           <Route path="/create" component={CreateDocument} />
-          <Route path="/sign/:tx" component={SignDocument} />
+          <Route path="/sign/:id" component={SignDocument} />
         </div>
       </Router>
     )

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Quill from 'quill';
-
 import { saveAgreement } from './../helpers/agreements';
-import {uploadFile} from "../helpers/arweave";
 
 export default class CreateDocument extends Component {
   quill = null;
@@ -31,8 +29,6 @@ export default class CreateDocument extends Component {
   handleSubmit = async () => {
     const container = document.getElementById('editor');
     const customHtml = container.querySelector('.ql-editor').innerHTML;
-
-    console.log({ participantName: this.state.participantName, customHtml });
 
     await saveAgreement(+localStorage.getItem('user'), {
       customHtml: customHtml,

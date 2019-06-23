@@ -1,7 +1,11 @@
 import nanoid from 'nanoid'
 import html2pdf from 'html2pdf.js';
 
-export function createPdf (customHtml) {
+export async function createPdf ({ customhtml, signature, participantname }) {
+  const data = `
+  ${customhtml}
+  <div>${participantname}: <img width="100" height="100" src="${signature}" </div>
+  `
   const id = nanoid();
   const opt = {
     margin:       1,
@@ -11,5 +15,5 @@ export function createPdf (customHtml) {
     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
   };
 
-  html2pdf().set(opt).from(customHtml).save();
+  return await html2pdf().set(opt).from(data).save()
 }

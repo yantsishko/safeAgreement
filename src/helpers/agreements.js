@@ -14,10 +14,11 @@ export async function getAllAgreements() {
   return data;
 }
 
-export async function getAggreementByHash (id) {
-  const agreement = await window.session.request(`SELECT * FROM agreements WHERE id='%${id}%'`).result()
+export async function getAggreementById (id) {
+  const agreement = await window.session.request(`SELECT * FROM agreements WHERE id=${id}`).result()
   const data = dataToJson(agreement.asString());
-
+  console.log(agreement.asString())
+  console.log(data)
   return data;
 }
 
@@ -36,4 +37,8 @@ export async function saveAgreement(userId, data) {
   const nextId = +allAgreements[allAgreements.length - 1].id + 1;
 
   await window.session.request(`INSERT INTO agreements VALUES ('%${nextId}%', '%${userId}%', '%${data.customHtml}%', '%${data.pathToPdf}%', '%${data.participantName}%')`).result();
+}
+
+export async function addPdfLink (id, pdfLink) {
+  await window.session.request(`UPDATE agreements SET pathToPdf=${pdfLink} WHERE id=${id}`).result();
 }

@@ -1,5 +1,4 @@
 import Arweave from 'arweave/web/index';
-import { createPdf } from "./pdfCreator";
 import jwk from '../key'
 
 let arweave = null
