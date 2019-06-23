@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Quill from 'quill';
-import { createPdf } from "../helpers/pdfCreator";
 
 import { saveAgreement } from './../helpers/agreements';
+import {uploadFile} from "../helpers/arweave";
 
 export default class CreateDocument extends Component {
   quill = null;
@@ -39,8 +39,6 @@ export default class CreateDocument extends Component {
       pathToPdf: '',
       participantName: this.state.participantName,
     });
-
-    createPdf(customHtml)
   };
 
   render () {

@@ -1,7 +1,11 @@
-import Arweave from 'arweave/node/index';
+import Arweave from 'arweave/web/index';
+import {createPdf} from "./pdfCreator";
+import jwk from '../key'
+
+let arweave = null
 
 export function initArweave () {
-  window.arweave = Arweave.init({
+  arweave = Arweave.init({
     host: 'arweave.net',
     port: 80,
     protocol: 'https',
@@ -10,6 +14,13 @@ export function initArweave () {
   });
 }
 
-export function uploadFile (pdfFile) {
+export async function uploadFile (data) {
+  const transaction = await arweave.createTransaction({ data }, jwk);
 
+  //transaction.addTag('Content-Type', 'application/pdf');
+
+  await arweave.transactions.sign(transaction, jwk);
+
+  const response = await arweave.transactions.post(transaction);
+  console.log(response, transaction)
 }
