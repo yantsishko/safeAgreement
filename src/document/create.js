@@ -46,15 +46,19 @@ export default class CreateDocument extends Component {
   render () {
     return (
       <div className="container-fluid">
-        { this.state.isLoading && <Spinner /> }
-        <>
-          <h2>Create a Document</h2>
-          <div id="editor" style={{ minHeight: '550px'}} />
-          <div style={ { display: 'flex', justifyContent: 'space-between' }} className="mt-2">
-            <input className="form-control mr-3" placeholder="Participant Full Name" onChange={ this.handleName } value={ this.state.participantName }/>
-            <button className="btn btn-primary" onClick={ this.handleSubmit }>Create</button>
-          </div>
-        </>
+        { this.state.isLoading
+          ? <Spinner />
+          : (
+            <>
+              <h2>Create a Document</h2>
+              <div id="editor" style={{ minHeight: '550px'}} />
+              <div style={ { display: 'flex', justifyContent: 'space-between' }} className="mt-2">
+                <input className="form-control mr-3" placeholder="Participant Full Name" onChange={ this.handleName } value={ this.state.participantName }/>
+                <button className="btn btn-primary" onClick={ this.handleSubmit }>Create</button>
+              </div>
+            </>
+          )
+        }
       </div>
     )
   }
