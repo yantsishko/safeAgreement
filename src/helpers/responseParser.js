@@ -7,9 +7,13 @@ export function dataToJson(string) {
   let result = [];
 
   elements.forEach((i) => {
-    const val = i.split(', ');
+    let val = i.split('%, ');
     const obj = {};
     params.forEach((key, i) => {
+      val[i] = val[i].slice(1);
+
+      val[i] = val[i][val[i].length - 1] === '%' ? val[i].slice(0, -1) : val[i];
+
       obj[key] = val[i];
     });
     result.push(obj);

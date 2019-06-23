@@ -14,10 +14,10 @@ class App extends Component {
     }
   }
 
-  // CREATE TABLE users(id int, name varchar(128))
-  // INSERT INTO users VALUES(1, 'Yan'), (2, 'Egor')
-  // CREATE TABLE agreements(id int, userId int, customHtml text, pathToPdf varchar(128), participantName varchar(128))
-  // INSERT INTO agreements VALUES(1, 1, '<p>Text</p>', '', '')
+  // CREATE TABLE users(id varchar(11), name varchar(128))
+  // INSERT INTO users VALUES('%1%', '%Yan%'), ('%2%', '%Egor%')
+  // CREATE TABLE agreements(id varchar(11), userId varchar(11), customHtml text, pathToPdf varchar(128), participantName varchar(128))
+  // INSERT INTO agreements VALUES('%1%', '%1%', '%<p>Text</p>%', '%%', '%Yan T1%')
 
   // SELECT * FROM agreements LEFT JOIN users ON (users.id = argeements.userId) get agreements list
 
