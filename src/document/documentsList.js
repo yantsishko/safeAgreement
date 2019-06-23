@@ -20,31 +20,21 @@ export default class DocumentsList extends Component {
     });
   }
 
-  renderItem = (item) => {
-    if (item.pathtopdf === '') {
-      return (
-        <div className="d-flex justify-content-between">
-          <div>
-            {item.id}. {item.participantname}
-          </div>
-          <div style={{ width: '315px' }}>
-            <Link to={ `/sign/${item.id}` } >Sign Document</Link>
-          </div>
-        </div>
-      )
-    }
-
-    if (item.pathtopdf !== '') {
-      return (
-        <div className="d-flex justify-content-between">
-          {item.id}. {item.participantname}
-          <div>
-            <a rel="noopener noreferrer" target="_blank" href={ `http://arweave.net/${item.pathtopdf}` }>Document Link</a>
-            {item.createDate ? `   Sign date ${item.createDate}` : ''}
-          </div>
-        </div>
-      )
-    }
+  renderItem = (item, index) => {
+    return (
+      <tr key={ index }>
+        <th scope="row">{ +index + 1 }</th>
+        <td>{item.participantname}</td>
+        <td>{item.createDate}</td>
+        <td>
+          {
+            item.pathtopdf === ''
+            ? <Link to={ `/sign/${item.id}` } >Sign</Link>
+            : <a rel="noopener noreferrer" target="_blank" href={ `http://arweave.net/${item.pathtopdf}` }>View</a>
+          }
+        </td>
+      </tr>
+    )
   };
 
   render() {
@@ -52,17 +42,25 @@ export default class DocumentsList extends Component {
       <div className="container">
         <h2>Documents</h2>
         {
-          this.state.agreements.length ? (
-            <div>
-              {
-                this.state.agreements.map((item) => (
-                  <div key={item.id}>
-                    {this.renderItem(item)}
-                  </div>
-                ))
-              }
-            </div>
-            ) : <Spinner />
+          this.state.agreements.length
+            ? (
+              <table className="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Participant Name</th>
+                    <th scope="col">Sign Date</th>
+                    <th scope="col">Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {
+                  this.state.agreements.map(this.renderItem)
+                }
+                </tbody>
+              </table>
+            )
+            : <Spinner />
         }
       </div>
     )

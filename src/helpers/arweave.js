@@ -37,7 +37,5 @@ export async function findDocuments (participantname) {
     expr2: hash
   })
 
-  console.log(list)
-
   return list
 }

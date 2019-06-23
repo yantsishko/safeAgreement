@@ -6,10 +6,14 @@ export async function getUserAgreements(userId) {
   const data = dataToJson(userAgreements.asString());
 
   const promises = data.map(async (i, ind) => {
-    data[ind].createDate = null;
+    data[ind].createDate = 'In Progress';
+    if (!i.pathtopdf) {
+      return
+    }
+
     const status = await window.arweave.transactions.getStatus(i.pathtopdf);
 
-    if (i.pathtopdf !== '' && status.status === 200) {
+    if (status.status === 200) {
       const blockHash = (await (await fetch(`http://arweave.net/tx/${i.pathtopdf}/status`)).json()).block_indep_hash;
       const status = await (await fetch(`http://arweave.net/block/hash/${blockHash}`)).json();
 
