@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getUserAgreements } from './../helpers/agreements';
 import { Link } from "react-router-dom";
-import Loader from 'react-loader-spinner'
+import Spinner from '../helpers/spinner'
 
 export default class DocumentsList extends Component {
   constructor(props) {
@@ -57,16 +57,7 @@ export default class DocumentsList extends Component {
                 ))
               }
             </div>
-            ) : (
-              <div className="d-flex justify-content-center">
-                <Loader
-                  type="Watch"
-                  color="#000000"
-                  height="30"
-                  width="30"
-                />
-              </div>
-          )
+            ) : <Spinner />
         }
       </div>
     )

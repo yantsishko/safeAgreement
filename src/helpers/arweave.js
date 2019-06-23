@@ -22,6 +22,20 @@ export async function uploadFile (data, participantname) {
   await arweave.transactions.sign(transaction, jwk);
 
   await arweave.transactions.post(transaction);
-  console.log(transaction)
+
   return transaction
+}
+
+export async function findDocuments (participantname) {
+  const hash = md5(participantname)
+
+  const list = await arweave.arql({
+    op: "equals",
+    expr1: "Participant",
+    expr2: hash
+  })
+
+  console.log(list)
+
+  return list
 }

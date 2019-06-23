@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import CreateDocument from './document/create';
 import SignDocument from './document/sign';
-import DocumentsList from './document/DocumentsList';
-
-import './App.css';
+import DocumentsList from './document/documentsList';
+import FindDocuments from './document/findDocuments';
 
 class App extends Component {
   componentWillMount() {
@@ -28,10 +27,12 @@ class App extends Component {
           <ul className="nav mb-3">
             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/create">Create a Document</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/find">Find Signed Documents</Link></li>
           </ul>
           <Route path="/" exact component={DocumentsList} />
           <Route path="/create" component={CreateDocument} />
           <Route path="/sign/:id" component={SignDocument} />
+          <Route path="/find" component={FindDocuments} />
         </div>
       </Router>
     )

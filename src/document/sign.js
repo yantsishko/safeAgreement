@@ -1,7 +1,7 @@
 import React from 'react'
-import Loader from 'react-loader-spinner'
+import Spinner from '../helpers/spinner'
 
-import Canvas from "../Canvas";
+import Canvas from "../canvas";
 import {uploadFile} from "../helpers/arweave";
 import {getAggreementById, addPdfLink} from "../helpers/agreements";
 import {createPdf} from "../helpers/pdfCreator";
@@ -37,16 +37,7 @@ export default class SignDocument extends React.Component {
       <div className="container-fluid">
         <h2>Sign the Document</h2>
         { this.state.isLoading
-          ? (
-            <div className="d-flex justify-content-center">
-              <Loader
-                type="Watch"
-                color="#000000"
-                height="30"
-                width="30"
-              />
-            </div>
-          )
+          ? <Spinner />
           :
           (
             <div>
