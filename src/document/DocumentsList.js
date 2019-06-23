@@ -12,11 +12,11 @@ export default class DocumentsList extends Component {
   }
 
   async componentDidMount() {
-    // const agreements = await getUserAgreements(+localStorage.getItem('user'));
-    //
-    // this.setState({
-    //   agreements,
-    // });
+    const agreements = await getUserAgreements(+localStorage.getItem('user'));
+
+    this.setState({
+      agreements,
+    });
   }
 
   renderItem = (item) => {
