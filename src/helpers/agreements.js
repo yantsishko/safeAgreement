@@ -14,11 +14,11 @@ export async function getAllAgreements() {
   return data;
 }
 
-export async function getAggreementById () {
-  const agreement = await window.session.request(`SELECT * FROM agreements WHERE hash=EA9243A026EF0945DF76333D827C626044AED9494C38F9D8D5FF4C91E6A9FA4A`)
-  //const data = dataToJson(agreement.asString());
-  console.log(agreement)
-  return '';
+export async function getAggreementByHash (hash) {
+  const agreement = await window.session.request(`SELECT * FROM agreements WHERE hash=${hash}`).result()
+  const data = dataToJson(agreement.asString());
+
+  return data;
 }
 
 

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import CreateDocument from './document/create';
 import SignDocument from './document/sign';
 import DocumentsList from './document/DocumentsList';
@@ -6,13 +8,7 @@ import DocumentsList from './document/DocumentsList';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      isloadedFluence: false,
-    };
-
+  componentWillMount() {
     if (!localStorage.getItem('user')) {
       localStorage.setItem('user', '1');
     }
@@ -27,14 +23,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <CreateDocument />
-        {
-          this.state.isloadedFluence &&  <DocumentsList />
-        }
-        <SignDocument />
-      </div>
-    );
+      <Router>
+        <div className="container">
+          <ul className="nav mb-3">
+            <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/create">Create a Document</Link></li>
+          </ul>
+          <Route path="/" exact component={DocumentsList} />
+          <Route path="/create" component={CreateDocument} />
+          <Route path="/sign/:tx" component={SignDocument} />
+        </div>
+      </Router>
+    )
   }
 }
 

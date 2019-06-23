@@ -1,5 +1,5 @@
 import Arweave from 'arweave/web/index';
-import {createPdf} from "./pdfCreator";
+import { createPdf } from "./pdfCreator";
 import jwk from '../key'
 
 let arweave = null
@@ -17,7 +17,7 @@ export function initArweave () {
 export async function uploadFile (data) {
   const transaction = await arweave.createTransaction({ data }, jwk);
 
-  //transaction.addTag('Content-Type', 'application/pdf');
+  // transaction.addTag('Content-Type', 'application/pdf');
 
   await arweave.transactions.sign(transaction, jwk);
 

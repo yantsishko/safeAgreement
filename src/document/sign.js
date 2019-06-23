@@ -1,7 +1,7 @@
 import React from 'react'
 import Canvas from "../Canvas";
 import {uploadFile} from "../helpers/arweave";
-import {getAggreementById} from "../helpers/agreements";
+import {getAggreementByHash} from "../helpers/agreements";
 
 export default class SignDocument extends React.Component {
   state = {
@@ -9,9 +9,8 @@ export default class SignDocument extends React.Component {
     signature: null
   }
 
-  async componentWillMount() {
-    const a = await getAggreementById()
-    console.log(a)
+  componentWillMount() {
+    getAggreementByHash()
   }
 
   onPaintSign = (signature) => {

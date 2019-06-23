@@ -39,8 +39,8 @@ export default class DocumentsList extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Created documents</h2>
+      <div className="container">
+        <h2>Documents</h2>
         {
           this.state.agreements.map((item) => (
             <div key={item.id}>

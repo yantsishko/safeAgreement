@@ -19,7 +19,7 @@ export default class CreateDocument extends Component {
           ['image', 'code-block']
         ]
       },
-      placeholder: 'Compose an epic...',
+      placeholder: 'Place for agreement',
       theme: 'snow'  // or 'bubble'
     });
   }
@@ -29,8 +29,8 @@ export default class CreateDocument extends Component {
   }
 
   handleSubmit = async () => {
-    const container = document.getElementById('editor')
-    const customHtml = container.querySelector('.ql-editor').innerHTML
+    const container = document.getElementById('editor');
+    const customHtml = container.querySelector('.ql-editor').innerHTML;
 
     console.log({ participantName: this.state.participantName, customHtml });
 
