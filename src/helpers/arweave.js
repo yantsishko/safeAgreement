@@ -1,3 +1,4 @@
+import md5 from 'md5';
 import Arweave from 'arweave/web/index';
 import jwk from '../key'
 
@@ -13,13 +14,14 @@ export function initArweave () {
   });
 }
 
-export async function uploadFile (data) {
-  const transaction = await arweave.createTransaction({ data }, jwk);
+export async function uploadFile (data, participantname) {
+  const transaction = await arweave.createTransaction({ data: `${data}` }, jwk);
 
-  // transaction.addTag('Content-Type', 'application/pdf');
+  transaction.addTag('Participant', md5(participantname));
 
   await arweave.transactions.sign(transaction, jwk);
 
-  const response = await arweave.transactions.post(transaction);
-  console.log(response, transaction)
+  await arweave.transactions.post(transaction);
+
+  return transaction.id
 }

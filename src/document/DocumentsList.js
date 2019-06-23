@@ -25,17 +25,18 @@ export default class DocumentsList extends Component {
       return (
         <div className="d-flex justify-content-between">
           <div>
-            {item.id} - {item.participantname}
+            {item.id}. {item.participantname}
           </div>
-          <Link to={ `/sign/${item.id}` } >Sign</Link>
+          <Link to={ `/sign/${item.id}` } >Sign Document</Link>
         </div>
       )
     }
 
     if (item.pathtopdf !== '') {
       return (
-        <div>
-          {item.id} - {item.participantname} - {`http://arweave.net/${item.pathtopdf}`}
+        <div className="d-flex justify-content-between">
+          {item.id}. {item.participantname}
+          <a rel="noopener noreferrer" target="_blank" href={ `http://arweave.net/${item.pathtopdf}` }>Document Link</a>
         </div>
       )
     }
@@ -57,7 +58,7 @@ export default class DocumentsList extends Component {
               }
             </div>
             ) : (
-              <div style={{marginLeft: '60px'}}>
+              <div className="d-flex justify-content-center">
                 <Loader
                   type="Watch"
                   color="#000000"

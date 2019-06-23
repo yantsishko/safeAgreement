@@ -87,16 +87,18 @@ class Canvas extends Component {
 
   render() {
     return (
-      <canvas
-        // We use the ref attribute to get direct access to the canvas element.
-        ref={(ref) => (this.canvas = ref)}
-        style={{ background: 'white', border: '1px solid black', touchAction: 'none' }}
-        onMouseDown={this.onMouseDown}
-        onMouseMove={this.onMouseMove}
-        onMouseUp={this.onEndPrint}
-        onTouchStart={this.onMouseDown}
-        onTouchMove={this.onMouseMove}
-      />
+      <div className={ this.props.className }>
+        <canvas
+          // We use the ref attribute to get direct access to the canvas element.
+          ref={(ref) => (this.canvas = ref)}
+          style={{ background: 'white', border: '1px solid black', touchAction: 'none' }}
+          onMouseDown={this.onMouseDown}
+          onMouseMove={this.onMouseMove}
+          onMouseUp={this.onEndPrint}
+          onTouchStart={this.onMouseDown}
+          onTouchMove={this.onMouseMove}
+        />
+      </div>
     );
   }
 }

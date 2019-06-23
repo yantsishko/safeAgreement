@@ -15,5 +15,7 @@ export async function createPdf ({ customhtml, signature, participantname }) {
     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
   };
 
-  return await html2pdf().set(opt).from(data).save()
+  html2pdf().set(opt).from(data).save();
+
+  return data
 }

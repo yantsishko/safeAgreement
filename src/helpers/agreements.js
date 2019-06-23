@@ -3,7 +3,7 @@ import { dataToJson } from './responseParser';
 export async function getUserAgreements(userId) {
   const userAgreements = await window.session.request(`SELECT agreements.id as id, agreements.userid as userid, agreements.customhtml as customhtml, agreements.pathtopdf as pathtopdf, agreements.participantname as participantname FROM agreements LEFT JOIN users ON (users.id = agreements.userid) WHERE users.id='%${userId}%'`).result();
   const data = dataToJson(userAgreements.asString());
-
+  console.log(data)
   return data;
 }
 
@@ -15,9 +15,9 @@ export async function getAllAgreements() {
 }
 
 export async function getAggreementById (id) {
-  const agreement = await window.session.request(`SELECT * FROM agreements WHERE id=${id}`).result()
-  const data = dataToJson(agreement.asString());
+  const agreement = await window.session.request(`SELECT * FROM agreements WHERE id='%${id}%' `).result()
   console.log(agreement.asString())
+  const data = dataToJson(agreement.asString());
   console.log(data)
   return data;
 }
@@ -40,5 +40,5 @@ export async function saveAgreement(userId, data) {
 }
 
 export async function addPdfLink (id, pdfLink) {
-  await window.session.request(`UPDATE agreements SET pathToPdf=${pdfLink} WHERE id=${id}`).result();
+  await window.session.request(`UPDATE agreements SET pathtopdf='%${pdfLink}%' WHERE id='%${id}%' `).result();
 }
