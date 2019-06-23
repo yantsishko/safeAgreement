@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getUserAgreements } from './../helpers/agreements';
-
+import Loader from 'react-loader-spinner'
 
 export default class DocumentsList extends Component {
   constructor(props) {
@@ -42,11 +42,26 @@ export default class DocumentsList extends Component {
       <div className="container">
         <h2>Documents</h2>
         {
-          this.state.agreements.map((item) => (
-            <div key={item.id}>
-              {this.renderItem(item)}
+          this.state.agreements.length ? (
+            <div>
+              {
+                this.state.agreements.map((item) => (
+                  <div key={item.id}>
+                    {this.renderItem(item)}
+                  </div>
+                ))
+              }
             </div>
-          ))
+            ) : (
+              <div style={{marginLeft: '60px'}}>
+                <Loader
+                  type="Watch"
+                  color="#000000"
+                  height="30"
+                  width="30"
+                />
+              </div>
+          )
         }
       </div>
     )
