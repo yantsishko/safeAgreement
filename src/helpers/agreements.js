@@ -39,6 +39,6 @@ export async function saveAgreement(userId, data) {
   await window.session.request(`INSERT INTO agreements VALUES ('%${nextId}%', '%${userId}%', '%${data.customHtml}%', '%${data.pathToPdf}%', '%${data.participantName}%')`).result();
 }
 
-export async function addPdfLink (id, pdfLink) {
-  await window.session.request(`UPDATE agreements SET pathtopdf='%${pdfLink}%' WHERE id='%${id}%' `).result();
+export async function addPdfLink (id, transaction) {
+  await window.session.request(`UPDATE agreements SET pathtopdf='%${transaction.id}%' WHERE id='%${id}%' `).result();
 }

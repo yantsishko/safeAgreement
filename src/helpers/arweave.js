@@ -22,6 +22,6 @@ export async function uploadFile (data, participantname) {
   await arweave.transactions.sign(transaction, jwk);
 
   await arweave.transactions.post(transaction);
-
-  return transaction.id
+  console.log(transaction)
+  return transaction
 }

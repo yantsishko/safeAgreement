@@ -26,8 +26,8 @@ export default class SignDocument extends React.Component {
     this.setState({ isLoading: true })
     const pdf = await createPdf(this.state);
 
-    const pdfLink = await uploadFile(pdf, this.state.participantname || '');
-    await addPdfLink(this.props.match.params.id, pdfLink);
+    const transaction = await uploadFile(pdf, this.state.participantname || '');
+    await addPdfLink(this.props.match.params.id, transaction);
 
     this.props.history.push(`/`)
   }
