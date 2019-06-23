@@ -24,8 +24,8 @@ export default class DocumentsList extends Component {
     return (
       <tr key={ index }>
         <th scope="row">{ +index + 1 }</th>
-        <td>{item.participantname}</td>
-        <td>{item.createDate}</td>
+        <td>{ item.participantname }</td>
+        <td>{ item.createDate }</td>
         <td>
           {
             item.pathtopdf === ''

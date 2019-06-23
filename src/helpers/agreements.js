@@ -1,5 +1,4 @@
 import { dataToJson } from './responseParser';
-import moment from 'moment';
 
 export async function getUserAgreements(userId) {
   const userAgreements = await window.session.request(`SELECT agreements.id as id, agreements.userid as userid, agreements.customhtml as customhtml, agreements.pathtopdf as pathtopdf, agreements.participantname as participantname FROM agreements LEFT JOIN users ON (users.id = agreements.userid) WHERE users.id='%${userId}%'`).result();
@@ -17,7 +16,7 @@ export async function getUserAgreements(userId) {
       const blockHash = (await (await fetch(`http://arweave.net/tx/${i.pathtopdf}/status`)).json()).block_indep_hash;
       const status = await (await fetch(`http://arweave.net/block/hash/${blockHash}`)).json();
 
-      data[ind].createDate = moment(status.timestamp * 1000).format('DD/MM/YYYY HH:mm');
+      data[ind].createDate = new Date(status.timestamp * 1000).toLocaleString();
     }
   });
 
