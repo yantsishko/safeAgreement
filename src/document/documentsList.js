@@ -27,7 +27,9 @@ export default class DocumentsList extends Component {
           <div>
             {item.id}. {item.participantname}
           </div>
-          <Link to={ `/sign/${item.id}` } >Sign Document</Link>
+          <div style={{ width: '315px' }}>
+            <Link to={ `/sign/${item.id}` } >Sign Document</Link>
+          </div>
         </div>
       )
     }
@@ -36,7 +38,10 @@ export default class DocumentsList extends Component {
       return (
         <div className="d-flex justify-content-between">
           {item.id}. {item.participantname}
-          <a rel="noopener noreferrer" target="_blank" href={ `http://arweave.net/${item.pathtopdf}` }>Document Link</a>
+          <div>
+            <a rel="noopener noreferrer" target="_blank" href={ `http://arweave.net/${item.pathtopdf}` }>Document Link</a>
+            {item.createDate ? `   Sign date ${item.createDate}` : ''}
+          </div>
         </div>
       )
     }
