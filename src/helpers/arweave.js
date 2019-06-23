@@ -12,6 +12,8 @@ export function initArweave () {
     timeout: 20000,
     logging: false,
   });
+
+  window.arweave = arweave;
 }
 
 export async function uploadFile (data, participantname) {
