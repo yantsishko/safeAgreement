@@ -52,7 +52,7 @@ export async function getAggreementById (id) {
  */
 export async function saveAgreement(userId, data) {
   const allAgreements = await getAllAgreements();
-  const nextId = +allAgreements[allAgreements.length - 1].id + 1;
+  const nextId = +allAgreements.length + 1;
 
   await window.session.request(`INSERT INTO agreements VALUES ('%${nextId}%', '%${userId}%', '%${data.customHtml}%', '%${data.pathToPdf}%', '%${data.participantName}%')`).result();
 }
