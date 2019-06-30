@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Quill from 'quill';
 import { saveAgreement } from './../helpers/agreements';
-import Spinner from '../helpers/spinner'
+import Spinner from '../helpers/spinner';
 
 export default class CreateDocument extends Component {
   quill = null;
   state = {
     isLoading: false,
-    participantName: ''
+    participantName: '',
   };
 
   componentDidMount() {
@@ -17,20 +17,20 @@ export default class CreateDocument extends Component {
           [{ header: [1, 2, false] }],
           ['bold', 'italic', 'underline'],
           ['image', 'code-block']
-        ]
+        ],
       },
       placeholder: 'Place for agreement',
-      theme: 'snow'  // or 'bubble'
+      theme: 'snow',
     });
   }
 
   handleName = (e) => {
-    this.setState({ participantName: e.target.value })
+    this.setState({ participantName: e.target.value });
   }
 
   handleSubmit = async () => {
     this.quill.blur();
-    this.setState({ isLoading: true })
+    this.setState({ isLoading: true });
     const container = document.getElementById('editor');
     const customHtml = container.querySelector('.ql-editor').innerHTML;
 
@@ -40,7 +40,7 @@ export default class CreateDocument extends Component {
       participantName: this.state.participantName,
     });
 
-    this.props.history.push(`/`)
+    this.props.history.push(`/`);
   };
 
   render () {

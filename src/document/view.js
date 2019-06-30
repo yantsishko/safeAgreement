@@ -1,14 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 export default class ViewDocument extends React.Component {
   state = {
     customHtml: null,
-    signature: null
-  }
-
-  componentWillMount() {
-    // Get document
-  }
+    signature: null,
+  };
 
   render () {
     return (
@@ -16,6 +12,6 @@ export default class ViewDocument extends React.Component {
         <h2>Document</h2>
         <div dangerouslySetInnerHTML={{ __html: this.state.customHtml }} />;
       </div>
-    )
+    );
   }
 }

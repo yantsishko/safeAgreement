@@ -4,7 +4,7 @@ export async function createPdf ({ customhtml, signature, participantname }) {
       ${customhtml}
       <div>${participantname}: <img width="100" height="100" src="${signature}" </div>
     </div>
-  `
+  `;
 
   return data
 }

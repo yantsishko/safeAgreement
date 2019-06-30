@@ -1,17 +1,18 @@
-import React from 'react'
-import Spinner from '../helpers/spinner'
-import { findDocuments } from "../helpers/arweave";
+import React from 'react';
+import Spinner from '../helpers/spinner';
+import { findDocuments } from '../helpers/arweave';
 
 export default class FindDocuments extends React.Component {
   state = {
     list: [],
-    isLoading: false
-  }
+    isLoading: false,
+  };
+
   handleSearch = async (e) => {
-    this.setState({ isLoading: true })
-    const list = await findDocuments(e.target.value)
-    this.setState({ list, isLoading: false })
-  }
+    this.setState({ isLoading: true });
+    const list = await findDocuments(e.target.value);
+    this.setState({ list, isLoading: false });
+  };
 
   render () {
     return (
@@ -37,6 +38,6 @@ export default class FindDocuments extends React.Component {
           }
         </div>
       </div>
-    )
+    );
   }
 }

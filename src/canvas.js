@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 class Canvas extends Component {
   isPainting = false;
-  // Different stroke styles to be used for user and guest
   userStrokeStyle = '#000000';
-  guestStrokeStyle = '#000000';
   line = [];
   prevPos = { offsetX: 0, offsetY: 0 };
 
@@ -39,14 +37,12 @@ class Canvas extends Component {
           offsetY: t.clientY - rect.top,
         };
       }
-      // const offSetData = {offsetX, offsetY};
-      // Set the start and stop position of the paint event.
+
       const positionData = {
         start: { ...this.prevPos },
         stop: { ...offSetData },
       };
 
-      // Add the position to the line array
       this.line = this.line.concat(positionData);
       this.paint(this.prevPos, offSetData, this.userStrokeStyle);
 
@@ -62,11 +58,11 @@ class Canvas extends Component {
 
     this.ctx.beginPath();
     this.ctx.strokeStyle = strokeStyle;
-    // Move the the prevPosition of the mouse
+
     this.ctx.moveTo(x, y);
-    // Draw a line to the current position of the mouse
+
     this.ctx.lineTo(offsetX, offsetY);
-    // Visualize the line using the strokeStyle
+
     this.ctx.stroke();
     this.prevPos = { offsetX, offsetY };
   };
@@ -76,7 +72,6 @@ class Canvas extends Component {
   };
 
   componentDidMount() {
-    // Here we set up the properties of the canvas element.
     this.canvas.width = 200;
     this.canvas.height = 100;
     this.ctx = this.canvas.getContext('2d');
@@ -89,7 +84,6 @@ class Canvas extends Component {
     return (
       <div className={ this.props.className }>
         <canvas
-          // We use the ref attribute to get direct access to the canvas element.
           ref={(ref) => (this.canvas = ref)}
           style={{ background: 'white', border: '1px solid black', touchAction: 'none' }}
           onMouseDown={this.onMouseDown}

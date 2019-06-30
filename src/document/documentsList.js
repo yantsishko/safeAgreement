@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import { getUserAgreements } from './../helpers/agreements';
-import { Link } from "react-router-dom";
-import Spinner from '../helpers/spinner'
+import Spinner from '../helpers/spinner';
 
 export default class DocumentsList extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ export default class DocumentsList extends Component {
           }
         </td>
       </tr>
-    )
+    );
   };
 
   render() {
@@ -63,7 +64,6 @@ export default class DocumentsList extends Component {
             : <Spinner />
         }
       </div>
-    )
+    );
   }
-
 }

@@ -1,8 +1,8 @@
 import md5 from 'md5';
 import Arweave from 'arweave/web/index';
-import jwk from '../key'
+import jwk from '../key';
 
-let arweave = null
+let arweave = null;
 
 export function initArweave () {
   arweave = Arweave.init({
@@ -25,17 +25,17 @@ export async function uploadFile (data, participantname) {
 
   await arweave.transactions.post(transaction);
 
-  return transaction
+  return transaction;
 }
 
 export async function findDocuments (participantname) {
-  const hash = md5(participantname)
+  const hash = md5(participantname);
 
   const list = await arweave.arql({
     op: "equals",
     expr1: "Participant",
     expr2: hash
-  })
+  });
 
   return list
 }

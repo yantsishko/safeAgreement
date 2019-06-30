@@ -7,7 +7,7 @@ export async function getUserAgreements(userId) {
   const promises = data.map(async (i, ind) => {
     data[ind].createDate = 'In Progress';
     if (!i.pathtopdf) {
-      return
+      return;
     }
 
     const status = await window.arweave.transactions.getStatus(i.pathtopdf);
@@ -32,7 +32,7 @@ export async function getAllAgreements() {
 }
 
 export async function getAggreementById (id) {
-  const agreement = await window.session.request(`SELECT * FROM agreements WHERE id='%${id}%' `).result()
+  const agreement = await window.session.request(`SELECT * FROM agreements WHERE id='%${id}%' `).result();
 
   const data = dataToJson(agreement.asString());
 
